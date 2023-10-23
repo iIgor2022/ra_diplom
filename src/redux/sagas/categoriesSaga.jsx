@@ -1,5 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getCategories, getCategoriesFailure, getCategoriesSuccess } from '../slices/categoriesSlice';
+import { getCategoriesList } from '../../api/service';
 
 function isCategory(data) {
   if (data instanceof Array) {
@@ -11,7 +12,7 @@ function isCategory(data) {
 
 function* getCategoriesSaga() {
   try {
-    const data = yield call(getCategories);
+    const data = yield call(getCategoriesList);
 
     if (isCategory(data)) yield put(getCategoriesSuccess({ categories: data }));
   } catch (error) {

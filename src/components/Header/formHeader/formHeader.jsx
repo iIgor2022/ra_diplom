@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import { changeSearchField } from "../../../redux/slices/catalogItemsSlice";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { PropTypes } from 'prop-types';
+import { changeSearchField } from '../../../redux/slices/catalogItemsSlice';
 
 function FormHeader({ input, setActive }) {
   const dispatch = useDispatch();
@@ -11,10 +12,10 @@ function FormHeader({ input, setActive }) {
   function handleSubmit(ev) {
     ev.preventDefault();
 
-    if (search.trim()) {
+    if (search.trim() !== '') {
       dispatch(changeSearchField(search.trim()));
       setSearch('');
-      navigate(`${import.meta.env.VITE_BASE_URL}/api/items`);
+      navigate('catalog');
     }
     setActive(false);
   }
@@ -33,7 +34,17 @@ function FormHeader({ input, setActive }) {
         onChange={(el) => setSearch(el.target.value)}
       />
     </form>
-  )
+  );
 }
+
+FormHeader.defaultProps = {
+  input: {},
+  setActive: () => {},
+};
+
+FormHeader.propTypes = {
+  input: PropTypes.objectOf(PropTypes.shape),
+  setActive: PropTypes.func,
+};
 
 export default FormHeader;

@@ -1,7 +1,8 @@
-import { Outlet } from "react-router";
-import Banner from "../Banner/banner";
-import Header from "../Header/header";
-import Footer from "../Footer/footer";
+import { Outlet } from 'react-router';
+import React from 'react';
+import Banner from '../Banner/banner';
+import Header from '../Header/header';
+import Footer from '../Footer/footer';
 
 function Root() {
   return (
@@ -17,7 +18,7 @@ function Root() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
 export default Root;

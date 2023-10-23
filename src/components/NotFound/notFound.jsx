@@ -1,3 +1,5 @@
+import React from 'react';
+
 function NotFound() {
   return (
     <>
@@ -6,7 +8,7 @@ function NotFound() {
         Извините, такая страница не найдена!
       </p>
     </>
-  )
+  );
 }
 
 export default NotFound;

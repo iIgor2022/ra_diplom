@@ -27,4 +27,4 @@ function* watchGetTopSalesSaga() {
   yield takeLatest(progressTopSales.type, getTopSalesSaga);
 }
 
-export { watchGetTopSalesSaga, isItemType};
+export { watchGetTopSalesSaga, isItemType };

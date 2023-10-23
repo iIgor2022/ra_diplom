@@ -1,7 +1,8 @@
-import Contacts from "./Contacts/contacts";
-import Copyrights from "./Copyrights/copyrights";
-import Information from "./Information/information";
-import Payments from "./Payments/payments";
+import React from 'react';
+import Contacts from './Contacts/contacts';
+import Copyrights from './Copyrights/copyrights';
+import Information from './Information/information';
+import Payments from './Payments/payments';
 import './footer.css';
 
 function Footer() {
@@ -20,7 +21,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer;

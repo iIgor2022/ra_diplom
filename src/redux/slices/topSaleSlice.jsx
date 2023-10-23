@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   topSales: [],
   loading: false,
-  error: null,
+  error: '',
 };
 
 const topSalesSlices = createSlice({
@@ -16,17 +16,17 @@ const topSalesSlices = createSlice({
       state.error = '';
     },
     successTopSales(state, action) {
-      const { items } = action.payload.topSales;
+      const items = action.payload.topSales;
 
       state.error = '';
       state.loading = false;
       state.topSales = items;
     },
     failureTopSales(state, action) {
-      const { message } = action.payload.error;
+      const { error } = action.payload;
 
       state.loading = false;
-      state.error = message;
+      state.error = error;
     },
   },
 });

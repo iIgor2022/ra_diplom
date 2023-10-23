@@ -1,10 +1,11 @@
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <NavLink className="nav-link" to={import.meta.env.VITE_BASE_URL} end>Главная</NavLink>
+        <NavLink className="nav-link" to="/" end>Главная</NavLink>
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to="catalog">Каталог</NavLink>
@@ -14,9 +15,9 @@ function Navbar() {
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to="contacts">Контакты</NavLink>
-      </li> 
+      </li>
     </ul>
-  )
+  );
 }
 
 export default Navbar;

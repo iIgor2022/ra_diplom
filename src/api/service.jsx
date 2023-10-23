@@ -1,18 +1,19 @@
 function fetchData(path, categoryId = '', offset = '', searchQuery = '', method = 'GET', body = {}) {
-  const url = new URL(`${import.meta.env.VITE_BASE_URL}/api`);
+  const url = new URL(`${import.meta.env.VITE_BASE_URL}/api/`);
   const headers = {
     'Content-Type': 'application/json',
   };
-  
+
   url.pathname += path;
   if (offset !== '') url.searchParams.set('offset', offset);
   if (categoryId !== '') url.searchParams.set('categoryId', categoryId);
-  if (searchQuery !== '') url.searchParams.set('q', searchQuery);
+  if (searchQuery !== '')
+    url.searchParams.set('q', searchQuery);
 
   return async () => {
     const response = await fetch(url, {
       method,
-      body: JSON.stringify(body),
+      body: method === 'POST' ? JSON.stringify(body) : null,
       headers,
     });
 
@@ -25,12 +26,14 @@ function fetchData(path, categoryId = '', offset = '', searchQuery = '', method 
 
 const getTopSales = fetchData('top-sales');
 const getCategoriesList = fetchData('categories');
-const getItmesList = (path, categoryId, offset, searchQuery) => fetchData({
-  path, categoryId, offset, searchQuery,
-});
+const getItemsList = ({
+  categoryId,
+  offset,
+  searchQuery,
+}) => fetchData('items/', categoryId, offset, searchQuery);
 const getItem = (id) => fetchData(`items/:${id}`);
 const postOrder = (body) => fetchData({ path: 'order', method: 'POST', body });
 
 export {
-  getTopSales, getCategoriesList, getItmesList, getItem, postOrder,
+  getTopSales, getCategoriesList, getItemsList, getItem, postOrder, fetchData,
 };

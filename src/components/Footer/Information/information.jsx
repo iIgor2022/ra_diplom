@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Information() {
   return (
@@ -16,7 +17,7 @@ function Information() {
         </li>
       </ul>
     </section>
-  )
+  );
 }
 
 export default Information;
