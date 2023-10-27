@@ -37,7 +37,7 @@ function Header() {
                     className="header-controls-pic header-controls-search"
                     onClick={handleClick}
                   />
-                  <CartHeader count={0} />
+                  <CartHeader />
                 </div>
                 {activeSearchField
                   && <FormHeader input={inputRef} setActive={setActiveSearchField} />}

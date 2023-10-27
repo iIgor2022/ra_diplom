@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useMatch } from 'react-router';
 import CatalogItems from './CatalogItems/catalogItems';
@@ -6,7 +7,7 @@ import MoreItems from './MoreItems/moreItems';
 import SearchForm from './SearchForm/searchForm';
 import './catalog.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { changeCategory, changeSearchField } from '../../redux/slices/catalogItemsSlice';
+import { changeCategory } from '../../redux/slices/catalogItemsSlice';
 
 function Catalog() {
   const dispatch = useAppDispatch();
@@ -14,8 +15,9 @@ function Catalog() {
   const currentPath = useMatch('catalog');
 
   useEffect(() => {
-    dispatch(changeCategory({ categoryId: 0 }));
-    if (currentPath && catalogDetails.searchParam === '') dispatch(changeSearchField(''));
+    if (catalogDetails.searchParam === '') {
+      dispatch(changeCategory({ categoryId: 0 }));
+    }
   }, []);
 
   return (
@@ -25,7 +27,7 @@ function Catalog() {
       <Categories currentCategory={catalogDetails.categoryId} />
       <CatalogItems />
       {catalogDetails.lastLoadedItemsLength < 0 || catalogDetails.lastLoadedItemsLength > 5
-        ? <MoreItems />
+        ? <MoreItems disabled={catalogDetails.loading} />
         : null}
     </section>
   );

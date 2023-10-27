@@ -1,12 +1,10 @@
-.repeat-button {
-  background-image: url('./img/replay_button.png');
-  background-position: left;
-  background-size: 25px;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  border-color: antiquewhite;
-  width: 150px;
-  margin: auto;
+.error-text {
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px groove #dc3545;
+  font-size: 1.45rem;
+  line-height: 1.5rem;
+  border-radius: 0.3rem;
 }
 
 .error-container {

@@ -9,6 +9,7 @@ import TopSales from '../TopSales/topSales';
 import Card from '../Card/card';
 import Loader from '../Loader/loader';
 import CatchError from '../CatchError/catchError';
+import { clearSearchQuery } from '../../redux/slices/catalogItemsSlice';
 
 function MainElement() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ function MainElement() {
   );
 
   useEffect(() => {
+    dispatch(clearSearchQuery());
     dispatch(progressTopSales());
     dispatch(getCategories());
   }, []);

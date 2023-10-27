@@ -7,8 +7,7 @@ function fetchData(path, categoryId = '', offset = '', searchQuery = '', method 
   url.pathname += path;
   if (offset !== '') url.searchParams.set('offset', offset);
   if (categoryId !== '') url.searchParams.set('categoryId', categoryId);
-  if (searchQuery !== '')
-    url.searchParams.set('q', searchQuery);
+  if (searchQuery !== '') url.searchParams.set('q', searchQuery);
 
   return async () => {
     const response = await fetch(url, {
@@ -18,6 +17,8 @@ function fetchData(path, categoryId = '', offset = '', searchQuery = '', method 
     });
 
     if (!response.ok) throw new Error(response.statusText);
+
+    if (method === 'POST') return 'ok';
 
     const data = await response.json();
     return data;
@@ -31,8 +32,8 @@ const getItemsList = ({
   offset,
   searchQuery,
 }) => fetchData('items/', categoryId, offset, searchQuery);
-const getItem = (id) => fetchData(`items/:${id}`);
-const postOrder = (body) => fetchData({ path: 'order', method: 'POST', body });
+const getItem = (id) => fetchData(`items/${id}`);
+const postOrder = (body) => fetchData('order', '', '', '', 'POST', body);
 
 export {
   getTopSales, getCategoriesList, getItemsList, getItem, postOrder, fetchData,

@@ -1,0 +1,11 @@
+.no-data {
+  width: 100%;
+}
+
+.no-data>img {
+  height: 18.75rem;
+}
+
+.no-data>p {
+  font-size: 1.45rem;
+}

@@ -5,8 +5,8 @@ import './catchError.css';
 function CatchError({ message, handleReload }) {
   return (
     <div className="error-container">
-      <span className="text-center">{`Ошибка загрузки (${message})`}</span>
-      <button className="repeat-button" type="button" onClick={handleReload}>
+      <span className="text-center error-text">{`Ошибка загрузки (${message})`}</span>
+      <button className="btn btn-danger btn-block btn-lg" type="button" onClick={handleReload}>
         Повторить
       </button>
     </div>

@@ -50,7 +50,25 @@ h2, .h2 {
   border-color: #727e86;
 }
 
+.card-img-container {
+  display: grid;
+}
+
+.card-img-container>img {
+  margin: auto;
+}
+
 .card-text.title {
   height: 48px;
   overflow: hidden;
+}
+
+.cart-item-title {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.cart-item-title:hover {
+  text-decoration: underline;
+  color: #0056b3;
 }

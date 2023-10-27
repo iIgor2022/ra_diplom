@@ -8,6 +8,7 @@ import NotFound from './components/NotFound/notFound';
 import MainElement from './components/Main/main';
 import Catalog from './components/Catalog/catalog';
 import CatalogItemDetails from './components/CatalogItemDetails/catalogItemDetails';
+import Cart from './components/Cart/cart';
 
 const router = createBrowserRouter([
   {
@@ -37,8 +38,12 @@ const router = createBrowserRouter([
         element: <TopSales content={<Contacts />} />,
       },
       {
-        path: 'catalog/:id',
+        path: 'items/:id',
         element: <CatalogItemDetails />,
+      },
+      {
+        path: 'cart',
+        element: <Cart />,
       },
       {
         path: '*',

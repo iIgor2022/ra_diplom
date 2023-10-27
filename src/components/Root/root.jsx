@@ -1,10 +1,15 @@
 import { Outlet } from 'react-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from '../Banner/banner';
 import Header from '../Header/header';
 import Footer from '../Footer/footer';
+import { useAppDispatch } from '../../redux/hooks';
+import { loadCartFromLocalStorage } from '../../redux/slices/cartSlice';
 
 function Root() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => { dispatch(loadCartFromLocalStorage()); }, []);
   return (
     <>
       <Header />

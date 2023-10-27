@@ -1,0 +1,19 @@
+.text-center.success {
+  width: 100%;
+  border: 1px groove #dee2e6;
+}
+
+.text-center.success>img {
+  height: 18.75rem;
+  margin-top: 1rem;
+}
+
+.text-center.success>p {
+  margin: 0.5rem 1rem;
+  font-size: 1.45rem;
+}
+
+.text-center.success>button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
