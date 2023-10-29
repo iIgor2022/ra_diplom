@@ -22,7 +22,7 @@ function FormHeader({ input, setActive }) {
 
   return (
     <form
-      className="header-controls-search-from form-inline"
+      className="header-controls-search-form form-inline"
       onSubmit={handleSubmit}
       data-id="search-form"
     >

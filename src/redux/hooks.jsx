@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useAppDispatch = () => useDispatch();
@@ -17,4 +17,17 @@ export function useCardSize() {
     return () => window.removeEventListener('resize', updateResize);
   }, []);
   return width;
+}
+export function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value]);
+
+  return debouncedValue;
 }

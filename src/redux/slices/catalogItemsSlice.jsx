@@ -18,11 +18,7 @@ const catalogItemsSlice = createSlice({
   initialState,
   reducers: {
     changeSearchField(state, { payload }) {
-      state.catalogItems = [];
-      state.categoryId = 0;
-      state.error = '';
       state.isMoreItems = false;
-      state.loading = true;
       state.offset = 0;
       state.searchParam = payload;
     },
@@ -42,6 +38,7 @@ const catalogItemsSlice = createSlice({
       state.lastLoadedItemsLength = -1;
       state.loading = true;
       if (payload) state.offset += payload.offset;
+      else state.catalogItems = [];
       state.error = '';
       state.disabledMoreItemsButton = true;
     },
