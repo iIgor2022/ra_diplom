@@ -3,22 +3,11 @@ import { getCatalogItemDetails, getCatalogItemDetailsFailure, getCatalogItemDeta
 import { getItem } from '../../api/service';
 
 function isProductType(data) {
-  if (data instanceof Object) {
-    return Object.keys(data).includes('id')
-    && Object.keys(data).includes('category')
-    && Object.keys(data).includes('title')
-    && Object.keys(data).includes('images')
-    && Object.keys(data).includes('sku')
-    && Object.keys(data).includes('manufacturer')
-    && Object.keys(data).includes('color')
-    && Object.keys(data).includes('material')
-    && Object.keys(data).includes('reason')
-    && Object.keys(data).includes('season')
-    && Object.keys(data).includes('heelSize')
-    && Object.keys(data).includes('price')
-    && Object.keys(data).includes('sizes');
-  }
-  return false;
+  const fields = ['id', 'category', 'title', 'images', 'sku', 'manufacturer', 'color', 'material', 'reason',
+    'season', 'heelSize', 'price', 'sizes'];
+  const keys = Object.keys(data);
+
+  return fields.every((field) => keys.includes(field));
 }
 
 function* getCatalogItemDetailsSaga(action) {
@@ -26,6 +15,7 @@ function* getCatalogItemDetailsSaga(action) {
     const data = yield call(getItem(action.payload.id));
 
     if (isProductType(data)) yield put(getCatalogItemDetailsSuccess(data));
+    else throw new Error('Wrong product structure');
   } catch (error) {
     if (error instanceof Error) yield put(getCatalogItemDetailsFailure({ error: error.message }));
   }

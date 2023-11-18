@@ -1,22 +1,33 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { setSize } from '../../../redux/slices/catalogItemDetailsSlice';
 
 function SizeSelector({ sizes }) {
   const dispatch = useAppDispatch();
+  const { size } = useAppSelector((state) => state.catalogItemDetails);
 
-  function handleClick(el) {
-    el.classList.toggle('selected');
-    if (el.classList.contains('selected')) dispatch(setSize({ size: el.textContent }));
-    else dispatch(setSize({ size: '' }));
+  function handleClick(elementSize) {
+    if (size === elementSize) {
+      dispatch(setSize({ size: '' }));
+    } else {
+      dispatch(setSize({ size: elementSize }));
+    }
   }
 
   const availableSizes = sizes.filter((item) => item.available);
-  // eslint-disable-next-line react/no-array-index-key
-  const sizesElement = availableSizes.map((item, index) => <span className="catalog-item-size" key={index} onClick={(el) => handleClick(el.target)}>{item.size}</span>);
+  const sizesElement = availableSizes.map((item, index) => (
+    <span
+      className={`catalog-item-size ${size === item.size && 'selected'}`}
+      key={index}
+      onClick={() => handleClick(item.size)}
+    >
+      {item.size}
+    </span>
+  ));
 
   return (
     sizesElement.length

@@ -5,7 +5,7 @@ import { useAppSelector } from '../../redux/hooks';
 import CartItem from './CartItem/cartItem';
 
 function Cart() {
-  const { cartItems, totalPrice } = useAppSelector((state) => state.cart);
+  const { cartItems, totalPrice } = useAppSelector((state) => state.persist);
 
   return (
     <>

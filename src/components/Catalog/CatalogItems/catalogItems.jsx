@@ -15,27 +15,29 @@ function CatalogItems() {
     (item) => <Card key={item.id} item={item} catalogCardItem />,
   );
 
+  const loader = loading ? <Loader /> : null;
+  const hasError = error
+    ? (
+      <CatchError
+        message={error}
+        handleReload={() => dispatch(getCatalogItemRequest())}
+      />
+    )
+    : null;
+
+  if (!loader && !hasError && !items.length) {
+    return (
+      <div className="row">
+        <EmptyQuery />
+      </div>
+    );
+  }
+
   return (
     <div className="row">
-      {!items.length
-        ? loading
-          ? <Loader />
-          : error
-            ? (
-              <CatchError
-                message={error}
-                handleReload={() => dispatch(getCatalogItemRequest())}
-              />
-            )
-            : items.length ? items : <EmptyQuery />
-        : loading
-          ? (
-            <>
-              {items}
-              <Loader />
-            </>
-          )
-          : items}
+      {loader}
+      {hasError}
+      {items}
     </div>
   );
 }

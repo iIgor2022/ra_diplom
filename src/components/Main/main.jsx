@@ -26,26 +26,21 @@ function MainElement() {
 
   const loader = loading ? <Loader /> : null;
   const hasError = error
-    ? <CatchError message={error.message} handleReload={() => dispatch(progressTopSales())} />
+    ? <CatchError message={error} handleReload={() => dispatch(progressTopSales())} />
     : null;
 
   return (
     <>
-      <TopSales content={(
+      <TopSales>
         <>
           <h2 className="text-center">Хиты продаж!</h2>
           <div className="row">
-            {loader
-              ? loader
-              : hasError
-                ? hasError
-                : items.length
-                  ? items
-                  : <CatchError handleReload={() => dispatch(progressTopSales())} />}
+            {loader}
+            {hasError}
+            {items}
           </div>
         </>
-      )}
-      />
+      </TopSales>
       <Outlet />
     </>
   );

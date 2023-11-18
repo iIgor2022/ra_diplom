@@ -31,11 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'about',
-        element: <TopSales content={<About />} />,
+        element: <TopSales><About /></TopSales>,
       },
       {
         path: 'contacts',
-        element: <TopSales content={<Contacts />} />,
+        element: <TopSales><Contacts /></TopSales>,
       },
       {
         path: 'items/:id',
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <TopSales content={<NotFound />} />,
+        element: <TopSales><NotFound /></TopSales>,
       },
     ],
   },

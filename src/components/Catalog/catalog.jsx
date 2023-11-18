@@ -20,15 +20,20 @@ function Catalog() {
     }
   }, []);
 
+  const moreButton = catalogDetails.lastLoadedItemsLength < 0
+    || catalogDetails.lastLoadedItemsLength > 5
+    ? (
+      <MoreItems disabled={catalogDetails.loading} />
+    )
+    : null;
+
   return (
     <section className="catalog">
       <h2 className="text-center">Каталог</h2>
       {currentPath && <SearchForm />}
       <Categories currentCategory={catalogDetails.categoryId} />
       <CatalogItems />
-      {catalogDetails.lastLoadedItemsLength < 0 || catalogDetails.lastLoadedItemsLength > 5
-        ? <MoreItems disabled={catalogDetails.loading} />
-        : null}
+      {moreButton}
     </section>
   );
 }

@@ -1,20 +1,20 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-function TopSales({ content }) {
+function TopSales({ children }) {
   return (
     <section className="top-sales">
-      {content}
+      {children}
     </section>
   );
 }
 
 TopSales.defaultProps = {
-  content: null,
+  children: null,
 };
 
 TopSales.propTypes = {
-  content: PropTypes.node,
+  children: PropTypes.node,
 };
 
 export default TopSales;

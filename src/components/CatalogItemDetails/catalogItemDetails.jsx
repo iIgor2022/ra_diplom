@@ -33,6 +33,16 @@ function CatalogItemDetails() {
     }
   }
 
+  const loader = loading ? <Loader /> : null;
+  const hasError = error
+    ? (
+      <CatchError
+        message={error}
+        handleReload={() => dispatch(getCatalogItemDetails({ id }))}
+      />
+    )
+    : null;
+
   if (Object.keys(product).length) {
     const sizeSelector = <SizeSelector sizes={product.sizes} />;
 
@@ -74,16 +84,9 @@ function CatalogItemDetails() {
 
   return (
     <section className="catalog-item">
-      {loading
-        ? <Loader />
-        : error
-          ? (
-            <CatchError
-              message={error}
-              handleReload={() => dispatch(getCatalogItemDetails({ id }))}
-            />
-          )
-          : item}
+      {loader}
+      {hasError}
+      {item}
     </section>
   );
 }

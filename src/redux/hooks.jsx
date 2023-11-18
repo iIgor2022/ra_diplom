@@ -3,21 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const useAppDispatch = () => useDispatch();
 export const useAppSelector = useSelector;
-export function useCardSize() {
+export function useCardSize(element) {
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {
-    function updateResize() {
-      const cardWidth = document.querySelector('.card').clientWidth;
+    function updateResize(el) {
+      let cardWidth = 0;
 
-      setWidth(cardWidth);
+      if (el) {
+        cardWidth = el.clientWidth;
+        setWidth(cardWidth);
+      } else setWidth(1);
     }
-    window.addEventListener('resize', updateResize);
-    updateResize();
+    window.addEventListener('resize', (ev) => {
+      updateResize(ev.target.document.body.querySelector('.card'));
+    });
+    updateResize(element);
     return () => window.removeEventListener('resize', updateResize);
-  }, []);
+  }, [element]);
   return width;
 }
+
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 

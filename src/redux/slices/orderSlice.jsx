@@ -16,7 +16,7 @@ const initialState = {
     ],
   },
   loading: false,
-  error: '',
+  isSuccess: '',
 };
 
 const orderSlice = createSlice({
@@ -27,22 +27,22 @@ const orderSlice = createSlice({
       state.body.items = payload.items;
       state.body.owner = payload.owner;
       state.loading = true;
-      state.error = '';
+      state.isSuccess = '';
     },
     postOrderSuccess(state, { payload }) {
       state.loading = false;
-      state.error = payload;
+      state.isSuccess = payload;
       state.items = [];
       state.owner = {};
     },
     postOrderFailure(state, { payload }) {
       state.loading = false;
-      state.error = payload.error;
+      state.isSuccess = payload.error;
       state.items = [];
       state.owner = {};
     },
     clearError(state) {
-      state.error = '';
+      state.isSuccess = '';
     },
   },
 });

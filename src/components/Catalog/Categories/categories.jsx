@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { changeCategory } from '../../../redux/slices/catalogItemsSlice';
 import CatchError from '../../CatchError/catchError';
+import Loader from '../../Loader/loader';
 
 function Categories({ currentCategory }) {
   const dispatch = useAppDispatch();
@@ -29,24 +30,29 @@ function Categories({ currentCategory }) {
       </Link>
     </li>
   ));
+  const loader = categories.loading ? <Loader /> : null;
+  const hasError = categories.error
+    ? (
+      <CatchError message={categories.error} handleRelod={handleClick(currentCategory)} />
+    )
+    : null;
+  const allCat = !loader && !hasError ? (
+    <li className="nav-item">
+      <Link
+        className={`${currentCategory === 0 ? 'active' : ''} nav-link`}
+        onClick={() => handleClick(0)}
+        to="."
+      >
+        Все
+      </Link>
+    </li>
+  ) : null;
 
   return (
     <ul className="catalog-categories nav justify-content-center">
-      {!categories.loading
-        ? categories.error
-          ? <CatchError message={categories.error} handleRelod={handleClick(currentCategory)} />
-          : (
-            <li className="nav-item">
-              <Link
-                className={`${currentCategory === 0 ? 'active' : ''} nav-link`}
-                onClick={() => handleClick(0)}
-                to="."
-              >
-                Все
-              </Link>
-            </li>
-          )
-        : null}
+      {loader}
+      {hasError}
+      {allCat}
       {categoriesList}
     </ul>
   );

@@ -3,11 +3,12 @@ import { getCategories, getCategoriesFailure, getCategoriesSuccess } from '../sl
 import { getCategoriesList } from '../../api/service';
 
 function isCategory(data) {
-  if (data instanceof Array) {
-    return data.every((item) => Object.keys(item).includes('id')
-      && Object.keys(item).includes('title'));
-  }
-  return false;
+  const fields = ['id', 'title'];
+  return data.every((item) => {
+    const keys = Object.keys(item);
+
+    return fields.every((field) => keys.includes(field));
+  });
 }
 
 function* getCategoriesSaga() {
@@ -15,6 +16,7 @@ function* getCategoriesSaga() {
     const data = yield call(getCategoriesList);
 
     if (isCategory(data)) yield put(getCategoriesSuccess({ categories: data }));
+    else throw new Error('Wrong category structure');
   } catch (error) {
     if (error instanceof Error) yield put(getCategoriesFailure({ error: error.message }));
   }

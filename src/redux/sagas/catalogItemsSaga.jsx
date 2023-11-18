@@ -21,6 +21,7 @@ function* getCatalogItemsSaga() {
     );
 
     if (isItemType(data)) yield put(getCatalogItemSuccess({ catalogItems: data }));
+    else throw new Error('Wrong item structure');
   } catch (error) {
     if (error instanceof Error) yield put(getCatalogItemFailure({ error: error.message }));
   }

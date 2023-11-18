@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { useAppDispatch, useCardSize } from '../../redux/hooks';
@@ -7,7 +7,8 @@ import { getCatalogItemDetails } from '../../redux/slices/catalogItemDetailsSlic
 function Card({ item, catalogCardItem }) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const cardWidth = useCardSize();
+  const nodeRef = useRef(null);
+  const cardWidth = useCardSize(nodeRef.current);
 
   function handleClick() {
     dispatch(getCatalogItemDetails({ id: item.id }));
@@ -16,7 +17,7 @@ function Card({ item, catalogCardItem }) {
 
   return (
     <div className="col-4">
-      <div className={catalogCardItem ? 'card catalog-item-card' : 'card'}>
+      <div className={catalogCardItem ? 'card catalog-item-card' : 'card'} ref={nodeRef}>
         <div className="card-img-container" style={{ height: cardWidth * 1.33 }}>
           <img src={item.images[0]} alt={item.title} className="card-img-top img-fluid" />
         </div>

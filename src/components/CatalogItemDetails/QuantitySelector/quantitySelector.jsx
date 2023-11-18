@@ -6,8 +6,8 @@ function QuantitySelector() {
   const { quantity } = useAppSelector((state) => state.catalogItemDetails);
   const dispatch = useAppDispatch();
 
-  function handleClick(el) {
-    if (el.textContent === '-') {
+  function handleClick(type) {
+    if (type === 'decrement') {
       dispatch(changeQuantity({ quantity: quantity - 1 }));
     } else dispatch(changeQuantity({ quantity: quantity + 1 }));
   }
@@ -16,13 +16,13 @@ function QuantitySelector() {
     <p>
       {'Количество: '}
       <span className="btn-group btn-group-sm p1-2">
-        <button className="btn btn-secondary" type="button" onClick={(el) => handleClick(el.target)}>
+        <button className="btn btn-secondary" type="button" onClick={() => handleClick('decrement')}>
           -
         </button>
         <span className="btn btn-outline-primary">
           {quantity}
         </span>
-        <button className="btn btn-secondary" type="button" onClick={(el) => handleClick(el.target)}>
+        <button className="btn btn-secondary" type="button" onClick={() => handleClick('increment')}>
           +
         </button>
       </span>

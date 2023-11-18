@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../redux/hooks';
 
 function CartHeader() {
   const navigate = useNavigate();
-  const count = useAppSelector((state) => state.cart.cartItems.length);
+  const count = useAppSelector((state) => state.persist.cartItems.length);
 
   return (
     <div

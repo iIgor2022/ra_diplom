@@ -56,6 +56,8 @@ h2, .h2 {
 
 .card-img-container>img {
   margin: auto;
+  object-fit: contain;
+  max-height: 12em;
 }
 
 .card-text.title {
