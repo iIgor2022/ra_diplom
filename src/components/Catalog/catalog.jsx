@@ -20,8 +20,8 @@ function Catalog() {
     }
   }, []);
 
-  const moreButton = catalogDetails.lastLoadedItemsLength < 0
-    || catalogDetails.lastLoadedItemsLength > 5
+  const moreButton = (catalogDetails.lastLoadedItemsLength < 0
+    || catalogDetails.lastLoadedItemsLength > 5) && !catalogDetails.error
     ? (
       <MoreItems disabled={catalogDetails.loading} />
     )

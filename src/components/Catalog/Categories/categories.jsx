@@ -50,7 +50,6 @@ function Categories({ currentCategory }) {
 
   return (
     <ul className="catalog-categories nav justify-content-center">
-      {loader}
       {hasError}
       {allCat}
       {categoriesList}

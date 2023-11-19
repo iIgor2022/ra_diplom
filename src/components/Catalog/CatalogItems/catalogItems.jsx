@@ -34,11 +34,13 @@ function CatalogItems() {
   }
 
   return (
-    <div className="row">
+    <>
+      <div className="row">
+        {hasError}
+        {items}
+      </div>
       {loader}
-      {hasError}
-      {items}
-    </div>
+    </>
   );
 }
 

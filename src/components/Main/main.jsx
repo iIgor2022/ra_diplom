@@ -35,10 +35,10 @@ function MainElement() {
         <>
           <h2 className="text-center">Хиты продаж!</h2>
           <div className="row">
-            {loader}
             {hasError}
             {items}
           </div>
+          {loader}
         </>
       </TopSales>
       <Outlet />
